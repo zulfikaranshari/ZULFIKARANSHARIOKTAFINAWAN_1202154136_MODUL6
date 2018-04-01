@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context="com.example.zulfikaranshari.zulfikaransharioktafinawan_1202154136_modul6.PostDetail">
+
+    <TextView
+        android:id="@+id/userMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="email dummy"
+        android:layout_gravity="center"/>
+
+    <ImageView
+        android:id="@+id/imageDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/postTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dummy"
+
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/postCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dummy"
+        android:layout_marginBottom="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/commentInput"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Write comment here"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

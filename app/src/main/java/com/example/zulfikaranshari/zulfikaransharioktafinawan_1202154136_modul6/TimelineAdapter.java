@@ -1,6 +1,7 @@
 package com.example.zulfikaranshari.zulfikaransharioktafinawan_1202154136_modul6;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
  */
 
 public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ImageViewHolder> {
+    public String userMail;
     private ArrayList<UploadModel> mTimeline;
     private Context mContext;
     private UploadModel mCurrentUpload;
@@ -41,8 +43,6 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ImageV
         holder.mEmail.setText(mCurrentUpload.getmEmail());
         Picasso.get()
                 .load(mCurrentUpload.getmUrl())
-                .fit()
-
                 .into(holder.mImage);
 
     }
@@ -52,7 +52,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ImageV
         return mTimeline.size();
     }
 
-    public class ImageViewHolder extends RecyclerView.ViewHolder{
+    public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView mEmail;
         private TextView mTitle;
@@ -66,6 +66,21 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ImageV
             mTitle = itemView.findViewById(R.id.titlePost);
             mCaption = itemView.findViewById(R.id.captionPost);
             mImage = itemView.findViewById(R.id.imageViewUploaded);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getLayoutPosition();
+            String email = mTimeline.get(position).toString();
+            String uri = mTimeline.get(position).toString();
+            String title = mTimeline.get(position).toString();
+            String caption = mTimeline.get(position).toString();
+            Intent x = new Intent(view.getContext(), PostDetail.class);
+            x.putExtra("email", email);
+            x.putExtra("uri", uri);
+            x.putExtra("title", title);
+            x.putExtra("caption", caption);
+            view.getContext().startActivity(x);
         }
     }
 }

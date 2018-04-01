@@ -85,8 +85,11 @@ public class TimelineActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-//            Intent i = new Intent(this, SettingsActivity.class);
-
+            //logout dan memindahkan ctivity ke MainActivity
+            FirebaseAuth.getInstance().signOut();
+            Intent x = new Intent(this, MainActivity.class);
+            startActivity(x);
+            finish();
             return true;
         }
 

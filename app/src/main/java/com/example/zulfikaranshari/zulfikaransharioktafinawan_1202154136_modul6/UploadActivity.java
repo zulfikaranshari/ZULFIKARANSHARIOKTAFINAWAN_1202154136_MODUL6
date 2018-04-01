@@ -56,17 +56,21 @@ public class UploadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
+
+        //inisialisasi Firebase untuk mengambil email
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
         email = user.getEmail();
 
+
+        //inisialisasi VIew yang akan digunakan
         mImageView = (ImageView) findViewById(R.id.imageview);
         mButtonSelect = (Button) findViewById(R.id.btnSelect);
         mEditTextTitle = (EditText) findViewById(R.id.postTitle);
         mEditTextCaption = (EditText) findViewById(R.id.postCaption);
-//        mButtonUpload = (FloatingActionButton) findViewById(R.id.fab);
         mProgress = (ProgressBar) findViewById(R.id.progressBar);
 
+        //inisialisasi StorageReference dan DatabaseReference
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
@@ -86,6 +90,7 @@ public class UploadActivity extends AppCompatActivity {
         openFileChooser();
     }
 
+    //method untuk intent baru yang akan memilih file
     private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -105,7 +110,9 @@ public class UploadActivity extends AppCompatActivity {
         }
     }
 
+    //method untuk mengupload file ke Storage
     private void uploadFile(){
+        //pengecekkan apakah file sudah dipilih atau belum
         if (mImageUri != null) {
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));
@@ -121,7 +128,10 @@ public class UploadActivity extends AppCompatActivity {
                                     mProgress.setProgress(0);
                                 }
                             }, 500);
+
                             Toast.makeText(UploadActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
+
+                            //mengupload file model ke database
                             UploadModel upload = new UploadModel(
                                     mEditTextTitle.getText().toString().trim(),
                                     mEditTextCaption.getText().toString(),
@@ -150,6 +160,7 @@ public class UploadActivity extends AppCompatActivity {
         }
     }
 
+    //method untuk mengambil file extension
     private String getFileExtension(Uri uri) {
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();

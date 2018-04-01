@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ImageViewHolder> {
-
+    //inisialisasi class yang akan digunakan
     private ArrayList<ProfileModel> mUpload;
     private Context mContext;
     private ProfileModel mCurrentUpload;

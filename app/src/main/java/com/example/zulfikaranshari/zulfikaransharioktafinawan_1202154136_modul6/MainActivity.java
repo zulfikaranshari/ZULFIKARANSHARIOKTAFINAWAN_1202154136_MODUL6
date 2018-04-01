@@ -47,24 +47,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void registeruser(View view) {
+        //mengambil String email dan password
         String email = mEmailField.getText().toString();
         String password = mPasswordField.getText().toString();
 
-
+        //pengecekkan apakah field email atau password kosong atau tidak
         if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)) {
+            //menampilkan toast jika kosong
             Toast.makeText(MainActivity.this, "Field cannot be empty", Toast.LENGTH_SHORT).show();
+            //jika tidak kosong maka akan melakukan pengecekkan jumlah karakter password
         } else {
-            if (password.length()>8){
+            if (password.length()>=8){
+                //membuat user dengan parameter username dan password
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                //jika berhasil maka akan menampilkan toast bahwa register berhasil
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
+
                                     Log.d(TAG, "createUserWithEmail:success");
                                     Toast.makeText(MainActivity.this, "Register Sucess", Toast.LENGTH_SHORT).show();
                                     FirebaseUser user = mAuth.getCurrentUser();
-
+                                //jika gagal maka akan menampilkan toast bahwa register gagal
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -77,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
             }else{
+                //menampilkan toast jika password kurang dari 8 karakter
                 Toast.makeText(MainActivity.this, "Password too short", Toast.LENGTH_SHORT).show();
             }
 
@@ -85,30 +91,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginUser(View view) {
+        //mengambil email dan password dari edittext
         String email = mEmailField.getText().toString();
         String password = mPasswordField.getText().toString();
 
+        //melakukan pengecekkan apakah field email dan password kosong atau tidak
         if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)){
+            //menampilkan toast jika field kosong
             Toast.makeText(MainActivity.this, "Field cannot be empty", Toast.LENGTH_SHORT).show();
         }else{
+            //sign in dengan email dan password
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            //jika berhasil maka akan menampilkan toast dan berpindah ke TimeLineActivity
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
+
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 startActivity(new Intent(MainActivity.this, TimelineActivity.class));
                             } else {
-                                // If sign in fails, display a message to the user.
+                                //jika gagal maka akan menampilkan toast bahwa login gagal
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
                                 Toast.makeText(MainActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
 
                             }
 
-                            // ...
+
                         }
                     });
         }

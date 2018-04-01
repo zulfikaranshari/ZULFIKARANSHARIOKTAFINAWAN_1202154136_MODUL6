@@ -30,7 +30,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:text="email dummy"
-                android:textSize="10sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -48,7 +48,7 @@
             android:text="Title Dummy"
             android:layout_marginLeft="20dp"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="10sp"
             android:layout_marginBottom="20dp"/>
         <TextView
             android:id="@+id/captionPost"

@@ -40,7 +40,7 @@ public class UploadActivity extends AppCompatActivity {
     private Button mButtonSelect;
     private EditText mEditTextTitle;
     private EditText mEditTextCaption;
-    private FloatingActionButton mButtonUpload;
+//    private FloatingActionButton mButtonUpload;
     private ProgressBar mProgress;
     private Uri mImageUri;
 
@@ -64,7 +64,7 @@ public class UploadActivity extends AppCompatActivity {
         mButtonSelect = (Button) findViewById(R.id.btnSelect);
         mEditTextTitle = (EditText) findViewById(R.id.postTitle);
         mEditTextCaption = (EditText) findViewById(R.id.postCaption);
-        mButtonUpload = (FloatingActionButton) findViewById(R.id.fab);
+//        mButtonUpload = (FloatingActionButton) findViewById(R.id.fab);
         mProgress = (ProgressBar) findViewById(R.id.progressBar);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");

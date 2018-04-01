@@ -1,4 +1,3 @@
-
 package com.example.zulfikaranshari.zulfikaransharioktafinawan_1202154136_modul6;
 
 import android.content.Context;
@@ -11,33 +10,30 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by zulfikaranshari on 01/04/2018.
  */
 
-public class UploadAdapter extends RecyclerView.Adapter<UploadAdapter.ImageViewHolder> {
-
-    private List<UploadModel> mUpload;
+public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ImageViewHolder> {
+    private ArrayList<UploadModel> mUpload;
     private Context mContext;
     private UploadModel mCurrentUpload;
 
-    UploadAdapter(Context context, List<UploadModel> upload){
+    TimelineAdapter(Context context, ArrayList<UploadModel> upload){
         mUpload = upload;
         mContext = context;
     }
 
     @Override
     public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_list_profile, parent, false);
-        return new ImageViewHolder(view);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_list_timeline, parent, false);
+        return new TimelineAdapter.ImageViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ImageViewHolder holder, int position) {
+    public void onBindViewHolder(TimelineAdapter.ImageViewHolder holder, int position) {
         mCurrentUpload = mUpload.get(position);
 
         holder.mTitle.setText(mCurrentUpload.getmTitle());

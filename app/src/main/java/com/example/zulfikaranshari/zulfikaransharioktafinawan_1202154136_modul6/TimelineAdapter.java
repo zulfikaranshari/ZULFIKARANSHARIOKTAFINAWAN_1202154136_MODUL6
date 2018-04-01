@@ -17,12 +17,12 @@ import java.util.ArrayList;
  */
 
 public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ImageViewHolder> {
-    private ArrayList<UploadModel> mUpload;
+    private ArrayList<UploadModel> mTimeline;
     private Context mContext;
     private UploadModel mCurrentUpload;
 
-    TimelineAdapter(Context context, ArrayList<UploadModel> upload){
-        mUpload = upload;
+    TimelineAdapter(Context context, ArrayList<UploadModel> timeline){
+        mTimeline = timeline;
         mContext = context;
     }
 
@@ -34,7 +34,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ImageV
 
     @Override
     public void onBindViewHolder(TimelineAdapter.ImageViewHolder holder, int position) {
-        mCurrentUpload = mUpload.get(position);
+        mCurrentUpload = mTimeline.get(position);
 
         holder.mTitle.setText(mCurrentUpload.getmTitle());
         holder.mCaption.setText(mCurrentUpload.getmCaption());
@@ -42,14 +42,14 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ImageV
         Picasso.get()
                 .load(mCurrentUpload.getmUrl())
                 .fit()
-                .centerCrop()
+
                 .into(holder.mImage);
 
     }
 
     @Override
     public int getItemCount() {
-        return mUpload.size();
+        return mTimeline.size();
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder{

@@ -8,7 +8,7 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/profileRecycler"
+        android:id="@+id/timelineRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

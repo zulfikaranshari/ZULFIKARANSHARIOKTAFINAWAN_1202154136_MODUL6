@@ -20,11 +20,11 @@ import java.util.List;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ImageViewHolder> {
 
-    private ArrayList<UploadModel> mUpload;
+    private ArrayList<ProfileModel> mUpload;
     private Context mContext;
-    private UploadModel mCurrentUpload;
+    private ProfileModel mCurrentUpload;
 
-    ProfileAdapter(Context context, ArrayList<UploadModel> upload){
+    ProfileAdapter(Context context, ArrayList<ProfileModel> upload){
         mUpload = upload;
         mContext = context;
     }
@@ -44,8 +44,6 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ImageVie
         holder.mEmail.setText(mCurrentUpload.getmEmail());
         Picasso.get()
                 .load(mCurrentUpload.getmUrl())
-                .fit()
-                .centerCrop()
                 .into(holder.mImage);
 
     }

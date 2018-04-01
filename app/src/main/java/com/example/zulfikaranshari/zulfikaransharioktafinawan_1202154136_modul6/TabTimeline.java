@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class TabTimeline extends Fragment {
     private ArrayList<UploadModel> mUpload;
     private RecyclerView mRecycler;
-    private ProfileAdapter mAdapter;
+    private TimelineAdapter mAdapter;
 
     private DatabaseReference mDatabaseRef;
 
@@ -40,7 +40,7 @@ public class TabTimeline extends Fragment {
 
         int gridColumn = getResources().getInteger(R.integer.grid_column_count);
 
-        mRecycler = (RecyclerView) layoutView.findViewById(R.id.profileRecycler);
+        mRecycler = (RecyclerView) layoutView.findViewById(R.id.timelineRecycler);
         mRecycler.setHasFixedSize(true);
 
         mRecycler.setLayoutManager(new GridLayoutManager(getContext(), gridColumn));
@@ -54,7 +54,7 @@ public class TabTimeline extends Fragment {
                     UploadModel model = post.getValue(UploadModel.class);
                     mUpload.add(model);
                 }
-                mAdapter = new ProfileAdapter(getContext(), mUpload);
+                mAdapter = new TimelineAdapter(getContext(), mUpload);
                 mRecycler.setAdapter(mAdapter);
             }
 

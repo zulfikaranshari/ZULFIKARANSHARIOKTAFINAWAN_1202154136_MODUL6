@@ -1,7 +1,5 @@
 package com.example.zulfikaranshari.zulfikaransharioktafinawan_1202154136_modul6;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,11 +17,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class TabProfile extends Fragment {
-    private ArrayList<UploadModel> mUpload;
+    private ArrayList<ProfileModel> mUpload;
     private RecyclerView mRecycler;
     private ProfileAdapter mAdapter;
 
@@ -53,9 +49,15 @@ public class TabProfile extends Fragment {
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                mUpload.clear();
                 for (DataSnapshot post : dataSnapshot.getChildren()){
-                    UploadModel model = post.getValue(UploadModel.class);
-                    mUpload.add(model);
+                    ProfileModel timelineData = post.getValue(ProfileModel.class);
+
+                    String userMail = TimelineActivity.email;
+                    String dataMail = String.valueOf(timelineData.getmEmail());
+                    if (dataMail.equals(userMail)){
+                        mUpload.add(timelineData);
+                    }
                 }
                 mAdapter = new ProfileAdapter(getContext(), mUpload);
                 mRecycler.setAdapter(mAdapter);
